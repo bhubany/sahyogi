@@ -170,7 +170,7 @@
 		      			<!-- // For working Request------ -->
 			      	<div class="tab-pane fade" id="request" role="tabpanel" aria-labelledby="request-tab">
 			      		<div class="px-2 rounded">
-			      			<div align="center" class="alert alert-info pt-3">
+			      			<div id="requestResponseMessage" align="center" class="alert alert-info pt-3">
 			      				<p>This is the request form to work as a team member for managing the website.</p>
 			      			</div>
 			        		<form method="post" class="row g-3 needs-validation" novalidate>   			
@@ -288,13 +288,13 @@
 		          			<div class="mb-3">
 		            			<div class="form-group">
 		                			<label for="">Email</label>
-	                				<input type="email" name="" max="255" class="form-control" placeholder="Enter Your email" required="">
-	                				<div class="invalid-feedback">Please Enter Valid Email</div>
+	                				<input type="email" name="" id="enteredResetEmail" class="form-control" placeholder="Enter Your email" required="" >
+	                				<div id="invalidResetEmail" class="invalid-feedback">Please Enter Valid Email</div>
 		            			</div>
 		            		</div>
 		            		<div class="mb-3">
 		            			<div class="form-group">
-	                				<button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#modalForPasswordReset">Reset</button>
+	                				<button id="submitResetEmail" class="btn btn-success" type="button">Reset</button>
 		            			</div>
 		            		</div>
 		            	</form>
@@ -318,59 +318,68 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <p class="modal-title" id="staticBackdropLabel">An email has sent you with an OTP code check it out.</p>
+        <p class="modal-title" id="staticBackdropLabel">Password reset</p>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="px-2 rounded">
-        	<div>
+        	<div id="inputOtpbox">
 	    		<form method="post" class="row g-3 needs-validation" novalidate>
+	    			<div align="center" class="alert alert-info pt-3">
+	    				<p>An email has sent you with an OTP code check it out.</p>
+	    			</div>
 	      			<div class="col-md-6">
 	        			<div class="form-group">
 	            			<label for="">OTP (six-digit)</label>
-	        				<input type="tel" name="" max="6" minlength="6" class="form-control" placeholder="One TIme Password" required="">
-	        				<div class="invalid-feedback">Check your spa folder too</div>
+	        				<input id="enteredOtp" type="tel" name="" maxlength="6" minlength="6" class="form-control" placeholder="One Time Password" required="/">
+	        				<div id="wrongOtp" class="invalid-feedback">Otp must be of 6-digit code. Check your spam folder too.</div>
 	        			</div>
 	        		</div>
 	        		<div class="col-md-6">
 	        			<div class="form-group">
 	        				<label></label><br>
-	        				<button class="btn btn-success" type="button">Submit</button>
+	        				<button class="btn btn-success" type="button" id="submitOtp">Submit</button>
 	        			</div>
 	        		</div>
 	        		<div class="col-md-6">
 	        			<div class="form-group">
-	        				<a href="">Didn't get?</a>
+	        				<a type="button" class="text-info noTextDecoration" id="resendOtpCode">Didn't get?</a>
 	        			</div>
 	        		</div>
 	        	</form>
 	        </div>
 	        <!-- // IF Input OTP is correct -->
-	        <div>
+	        <div id="inputNewPassword" class="hideContent">
 	        	<form method="post" class="row g-3 needs-validation" novalidate>
 	        		<div align="center" class="alert alert-info pt-3">
-	      				<p>Password Must be of 8 characters</p>
+	      				<p>Password must be at least 8 characters and atmost 20 characters in length and must contain at least one number, one upper case letter, one lower case letter and one special character.</p>
 	      			</div>
 	      			<div class="mb-3">
 	        			<div class="form-group">
 	            			<label for="">New Password</label>
-	        				<input type="password" name="" max="20" minlength="8" class="form-control" placeholder="Enter New Password" required="">
-	        				<div class="invalid-feedback">Password Must be</div>
+	        				<input id="enteredNewPassword" type="password" name="" max="20" minlength="8" class="form-control" placeholder="Enter New Password" required="">
+	        				<div id="invalidPassword" class="invalid-feedback">Invalid Password. Please match above criteria</div>
 	        			</div>
 	        		</div>
 	        		<div class="mb-3">
 	        			<div class="form-group">
 	            			<label for="">Conform Password</label>
-	        				<input type="password" name="" max="20" minlength="8" class="form-control" placeholder="Conform New Password" required="">
-	        				<div class="invalid-feedback">Password Must be</div>
+	        				<input id="enteredConformPassword" type="password" name="" max="20" minlength="8" class="form-control" placeholder="Conform New Password" required="">
+	        				<div id="bothPasswordNotMatched" class="invalid-feedback">Both Password did not matched</div>
 	        			</div>
 	        		</div>
 	        		<div class="mb-3">
 	        			<div class="form-group">
-	        				<button class="btn btn-success" type="button">Submit</button>
+	        				<button class="btn btn-success" type="button" id="submitNewPassword">Submit</button>
 	        			</div>
 	        		</div>
 	        	</form>
+	        </div>
+	        <!-- // Password changed sucessfully -->
+	        <div id="passwordResetSucess" class="hideContent">
+	        	<div id="messageClass" class="alert alert-success">
+	        		<p><i class="fa fa-tick">&nbsp;</i> Your Password has been reset sucessfully. Try login.</p>
+	        	</div>
 	        </div>
         </div>
       </div>
@@ -400,5 +409,6 @@
     </div>
   </div>
 </div>
+
 
 <?php require 'footer.html'; ?>

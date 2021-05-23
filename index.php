@@ -283,20 +283,4 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <?php require 'footer.html'; ?>
