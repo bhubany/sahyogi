@@ -1,6 +1,15 @@
 <?php require 'header.html'; ?>
 <?php require 'navBar.html'; ?>
 
+<?php 
+
+/*	if(isset($_POST['form'])){
+		if($_POST['fname'] ==  ""){
+			$error_msg ['fname'] = "Field required";
+		}
+	}
+*/
+?>
 
 <div class="myBorder-blue">
 	<div class="row py-1">
@@ -55,74 +64,79 @@
 			      			<div align="center" class="alert alert-info pt-3">
 			      				<p>If you want to provide the services for covid19 patients. Please register here.</p>
 			      			</div>
-			        		<form method="post" class="row g-3 needs-validation" novalidate>
+			        		<form action= "register.php" method="post" class="row g-3 needs-validation" novalidate>
 			          			<div class="col-md-6">
 			            			<div class="form-group">
 			                			<label for=""><span class="compulsory-required">*</span>Full Name (पुरा नाम)</label>
-		                				<input type="text" name="" max="255" class="form-control" placeholder="Enter Your Full Name" required="">
+		                				<input type="text" name="fname" max="255" class="form-control" placeholder="Enter Your Full Name" required>
+										<?php /*
+											if(isset($error_msg['fname'])){
+												echo $error_msg['fname'];
+											}*/
+										?>
 		                				<div class="invalid-feedback">Please Enter Valid Name</div>
 			            			</div>
 			            		</div>
 			            		<div class="col-md-6">
 			            			<div class="form-group">
 			                			<label for="">Organization Name (संस्थाको नाम )</label>
-		                				<input type="text" name="" max="255" class="form-control" placeholder="Enter Your Full Name" required="">
+		                				<input type="text" name="oname" max="255" class="form-control" placeholder="Enter Your Full Name" required="">
 		                				<div class="invalid-feedback">Please Enter Valid Name</div>
 			            			</div>
 			            		</div>
 			            		<div class="col-md-6">
 			            			<div class="form-group">
 						                <label for=""><span class="compulsory-required">*</span>Email</label>
-						                <input type="text" name="" max="100" class="form-control" placeholder="lorem.ipsum@gmail.com" required="">
+						                <input type="text" name="email" max="100" class="form-control" placeholder="lorem.ipsum@gmail.com" required="">
 						                <div class="invalid-feedback">Please enter a valid email.</div>
 			            			</div>
 			            		</div>
 			            		<div class="col-md-6">
 			            			<div class="form-group">
 						                <label for=""><span class="compulsory-required">*</span>Username</label>
-						                <input type="text" name="" max="100" class="form-control" placeholder="lorem.ipsum@gmail.com" required="">
+						                <input type="text" name="uname" max="100" class="form-control" placeholder="lorem.ipsum@gmail.com" required="">
 						                <div class="invalid-feedback">Please enter a valid email.</div>
 			            			</div>
 			            		</div>
 			            		<div class="col-md-6">
 			            			<div class="form-group">
 						                <label for=""><span class="compulsory-required">*</span>Contact (primary)</label>
-						                <input type="text" name="" max="100" class="form-control" placeholder="lorem.ipsum@gmail.com" required="">
+						                <input type="text" name="con1" max="100" class="form-control" placeholder="lorem.ipsum@gmail.com" required="">
 						                <div class="invalid-feedback">Please enter a valid Contact no.</div>
 			            			</div>
 			            		</div>
 			            		<div class="col-md-6">
 			            			<div class="form-group">
 						                <label for="">Contact (secondary)</label>
-						                <input type="text" name="" max="100" class="form-control" placeholder="lorem.ipsum@gmail.com" required="">
+						                <input type="text" name="con2" max="100" class="form-control" placeholder="lorem.ipsum@gmail.com" required="">
 						                <div class="invalid-feedback">Please enter a valid contact no.</div>
 			            			</div>
 			            		</div>
 			            		<div class="col-md-6">
 			            			<div class="form-group">
 						                <label for=""><span class="compulsory-required">*</span>Country (देश):</label>
-						                <input type="text" name="" max="100" class="form-control" placeholder="lCountry Name" required="" value="Nepal">
+						                <input type="text" name="country" max="100" class="form-control" placeholder="lCountry Name" required="" value="Nepal">
 						                <div class="invalid-feedback">Please enter a valid Contact no.</div>
 			            			</div>
 			            		</div>
 			            		<div class="col-md-6">
 			            			<div class="form-group">
 						                <label for=""><span class="compulsory-required">*</span>State ( प्रदेश)</label>
-						                <input type="text" name="" max="100" class="form-control" placeholder="lorem.ipsum@gmail.com" required="">
+						                <input type="text" name="state" max="100" class="form-control" placeholder="lorem.ipsum@gmail.com" required="">
 						                <div class="invalid-feedback">Please enter a valid contact no.</div>
 			            			</div>
 			            		</div>
 			            		<div class="col-md-6">
 			            			<div class="form-group">
 						                <label for=""><span class="compulsory-required">*</span>District (जिल्ला ):</label>
-						                <input type="text" name="" max="100" class="form-control" placeholder="lCountry Name" required="" value="Nepal">
+						                <input type="text" name="district" max="100" class="form-control" placeholder="lCountry Name" required="" value="Nepal">
 						                <div class="invalid-feedback">Please enter a valid Contact no.</div>
 			            			</div>
 			            		</div>
 			            		<div class="col-md-6">
 			            			<div class="form-group">
 						                <label for=""><span class="compulsory-required">*</span>Municipility/Rural ( नगरपालिका /गाउँपालिका)</label>
-						                <input type="text" name="" max="100" class="form-control" placeholder="Municipility/Rural" required="">
+						                <input type="text" name="mun" max="100" class="form-control" placeholder="Municipility/Rural" required="">
 						                <div class="invalid-feedback">Please enter a valid contact no.</div>
 			            			</div>
 			            		</div>
