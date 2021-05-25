@@ -1,15 +1,7 @@
 <?php require 'header.html'; ?>
 <?php require 'navBar.html'; ?>
 
-<?php 
-
-/*	if(isset($_POST['form'])){
-		if($_POST['fname'] ==  ""){
-			$error_msg ['fname'] = "Field required";
-		}
-	}
-*/
-?>
+<?php include 'register.php';?>
 
 <div class="myBorder-blue">
 	<div class="row py-1">
@@ -64,16 +56,12 @@
 			      			<div align="center" class="alert alert-info pt-3">
 			      				<p>If you want to provide the services for covid19 patients. Please register here.</p>
 			      			</div>
-			        		<form action= "register.php" method="post" class="row g-3 needs-validation" novalidate>
+			        		<form action= "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" class="row g-3 needs-validation" novalidate>
 			          			<div class="col-md-6">
 			            			<div class="form-group">
 			                			<label for=""><span class="compulsory-required">*</span>Full Name (पुरा नाम)</label>
 		                				<input type="text" name="fname" max="255" class="form-control" placeholder="Enter Your Full Name" required>
-										<?php /*
-											if(isset($error_msg['fname'])){
-												echo $error_msg['fname'];
-											}*/
-										?>
+										<span class="compulsory-required"><?php echo $fnameErr;?></span>
 		                				<div class="invalid-feedback">Please Enter Valid Name</div>
 			            			</div>
 			            		</div>
@@ -88,6 +76,7 @@
 			            			<div class="form-group">
 						                <label for=""><span class="compulsory-required">*</span>Email</label>
 						                <input type="text" name="email" max="100" class="form-control" placeholder="lorem.ipsum@gmail.com" required="">
+										<span class="compulsory-required"><?php echo $emailErr;?></span>
 						                <div class="invalid-feedback">Please enter a valid email.</div>
 			            			</div>
 			            		</div>
@@ -95,6 +84,7 @@
 			            			<div class="form-group">
 						                <label for=""><span class="compulsory-required">*</span>Username</label>
 						                <input type="text" name="uname" max="100" class="form-control" placeholder="lorem.ipsum@gmail.com" required="">
+										<span class="compulsory-required"><?php echo $unameErr;?></span>
 						                <div class="invalid-feedback">Please enter a valid email.</div>
 			            			</div>
 			            		</div>
@@ -102,6 +92,7 @@
 			            			<div class="form-group">
 						                <label for=""><span class="compulsory-required">*</span>Contact (primary)</label>
 						                <input type="text" name="con1" max="100" class="form-control" placeholder="lorem.ipsum@gmail.com" required="">
+										<span class="compulsory-required"><?php echo $conErr;?></span>
 						                <div class="invalid-feedback">Please enter a valid Contact no.</div>
 			            			</div>
 			            		</div>
@@ -116,6 +107,7 @@
 			            			<div class="form-group">
 						                <label for=""><span class="compulsory-required">*</span>Country (देश):</label>
 						                <input type="text" name="country" max="100" class="form-control" placeholder="lCountry Name" required="" value="Nepal">
+										<span class="compulsory-required"><?php echo $countryErr;?></span>
 						                <div class="invalid-feedback">Please enter a valid Contact no.</div>
 			            			</div>
 			            		</div>
@@ -123,6 +115,7 @@
 			            			<div class="form-group">
 						                <label for=""><span class="compulsory-required">*</span>State ( प्रदेश)</label>
 						                <input type="text" name="state" max="100" class="form-control" placeholder="lorem.ipsum@gmail.com" required="">
+										<span class="compulsory-required"><?php echo $stErr;?></span>
 						                <div class="invalid-feedback">Please enter a valid contact no.</div>
 			            			</div>
 			            		</div>
@@ -130,6 +123,7 @@
 			            			<div class="form-group">
 						                <label for=""><span class="compulsory-required">*</span>District (जिल्ला ):</label>
 						                <input type="text" name="district" max="100" class="form-control" placeholder="lCountry Name" required="" value="Nepal">
+										<span class="compulsory-required"><?php echo $distErr;?></span>
 						                <div class="invalid-feedback">Please enter a valid Contact no.</div>
 			            			</div>
 			            		</div>
@@ -137,26 +131,29 @@
 			            			<div class="form-group">
 						                <label for=""><span class="compulsory-required">*</span>Municipility/Rural ( नगरपालिका /गाउँपालिका)</label>
 						                <input type="text" name="mun" max="100" class="form-control" placeholder="Municipility/Rural" required="">
+										<span class="compulsory-required"><?php echo $munErr;?></span>
 						                <div class="invalid-feedback">Please enter a valid contact no.</div>
 			            			</div>
 			            		</div>
 			            		<div class="col-md-6">
 			            			<div class="form-group">
 						                <label for=""><span class="compulsory-required">*</span>Service For ( सेवा प्रदान)</label><br><br>
-						                <select class="form-select">
-						                	<option selected>Select Service</option>
-						                	<option>Hospital</option>
-						                	<option>Ambuance</option>
-						                	<option>Food</option>
-						                	<option>Other</option>
+						                <select name="service" class="form-select" >
+						                	<option value="" selected>Select Service</option>
+						                	<option value="hospital">Hospital</option>
+						                	<option value="ambulance">Ambuance</option>
+						                	<option value="food">Food</option>
+						                	<option value="other">Other</option>
 						                </select>
+										<span class="compulsory-required"><?php echo $serviceErr;?></span>
 						                <div class="invalid-feedback">Please select service you want to provide</div>
 			            			</div>
 			            		</div>
 			            		<div class="col-md-6">
 			            			<div class="form-group">
 						                <label for="">If other (यदि अन्य)</label>
-						                <textarea type="text" class="form-control" placeholder="If other Please Specify" rows="4"></textarea>
+						                <textarea name="others" type="text" class="form-control" placeholder="If other Please Specify" rows="4"></textarea>
+										<span class="compulsory-required"><?php echo $otherErr;?></span>
 						                <div class="invalid-feedback">Please Specify service.</div>
 			            			</div>
 			            		</div>
