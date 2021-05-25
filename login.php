@@ -26,25 +26,28 @@
 		      			<!-- // Login Form -->
 			      	<div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
 			      		<div class="px-2 rounded" align="center">
+			      			<div id="loginResponseMessage" class="hideContent alert">
+			      				<p></p>
+			      			</div>
 				      		<div align="" class="pt-3">
 				      			<img class="rounded-circle myBorder-light-green px-1 py-1" src="assests/icons/corona-fighter1.png" width="150" height="150">
 				      		</div>
-				        	<form method="post" class="px-5 py-4 container-responsive col">
+				        	<form id="loginForm" method="post" class="px-5 py-4 container-responsive col">
 				          	<div class="col-md-8">
 					          <div class="input-group mb-3">
 								  <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
-								  <input type="text" class="form-control" placeholder="Username">
+								  <input id="loginUsername" type="text" class="form-control" placeholder="Username">
 							  </div>
 						  	</div>
 						  	<div class="col-md-8">
 					          <div class="input-group mb-3">
 								  <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i></span>
-								  <input type="password" class="form-control" placeholder="Username">
+								  <input id="loginPassword" type="password" class="form-control" placeholder="Username">
 							  </div>
 						  	</div>
 						  	<div class="col-md-8">
 					          <div class="d-grid gap-2 pb-2">
-					            <input type="submit" class="btn btn-primary btn-block" id="" value="login">
+					            <input id="loginSubmit" type="button" class="btn btn-primary btn-block" id="" value="login">
 					          </div>
 					      	</div>
 				        	</form>
@@ -53,92 +56,106 @@
 							<!-- // FOr Registration -->
 			        <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
 			      		<div class="px-2 rounded">
-			      			<div align="center" class="alert alert-info pt-3">
-			      				<p>If you want to provide the services for covid19 patients. Please register here.</p>
+			      			<div id="serviceProviderResponseMessage" align="center" class="alert alert-info pt-3">
+			      				<p>If you want to provide the services for covid19 patients. Please register here.<br>Password must be at least 8 characters and atmost 20 characters in length and must contain at least one number, one upper case letter, one lower case letter and one special character.</p>
 			      			</div>
-			        		<form action= "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" class="row g-3 needs-validation" novalidate>
+			        		<form id="serviceProviderForm" action= "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" class="row g-3 needs-validation" novalidate>
 			          			<div class="col-md-6">
 			            			<div class="form-group">
 			                			<label for=""><span class="compulsory-required">*</span>Full Name (पुरा नाम)</label>
-		                				<input type="text" name="fname" max="255" class="form-control" placeholder="Enter Your Full Name" required>
+		                				<input id="serviceProviderFullName" type="text" name="fname" max="255" class="form-control" placeholder="Enter Your Full Name" required="">
 										<span class="compulsory-required"><?php echo $fnameErr;?></span>
-		                				<div class="invalid-feedback">Please Enter Valid Name</div>
+		                				<div id="serviceProviderInvalidname" class="invalid-feedback">Please Enter Valid Name</div>
 			            			</div>
 			            		</div>
 			            		<div class="col-md-6">
 			            			<div class="form-group">
 			                			<label for="">Organization Name (संस्थाको नाम )</label>
-		                				<input type="text" name="oname" max="255" class="form-control" placeholder="Enter Your Full Name" required="">
-		                				<div class="invalid-feedback">Please Enter Valid Name</div>
+		                				<input id="serviceProviderOrgName" type="text" name="oname" max="255" class="form-control" placeholder="Enter Your organization Name" required="">
+		                				<div id="serviceProviderInvalidOrgName" class="invalid-feedback">Please Enter Valid Name</div>
 			            			</div>
 			            		</div>
 			            		<div class="col-md-6">
 			            			<div class="form-group">
 						                <label for=""><span class="compulsory-required">*</span>Email</label>
-						                <input type="text" name="email" max="100" class="form-control" placeholder="lorem.ipsum@gmail.com" required="">
+						                <input id="serviceProviderEmail" type="text" name="email" max="100" class="form-control" placeholder="lorem.ipsum@gmail.com" required="">
 										<span class="compulsory-required"><?php echo $emailErr;?></span>
-						                <div class="invalid-feedback">Please enter a valid email.</div>
+						                <div id="serviceProviderInvalidEmail" class="invalid-feedback">Please enter a valid email.</div>
 			            			</div>
 			            		</div>
 			            		<div class="col-md-6">
 			            			<div class="form-group">
 						                <label for=""><span class="compulsory-required">*</span>Username</label>
-						                <input type="text" name="uname" max="100" class="form-control" placeholder="lorem.ipsum@gmail.com" required="">
+						                <input id="serviceProviderUsername" type="text" name="uname" max="100" class="form-control" placeholder="Enter username" required="">
 										<span class="compulsory-required"><?php echo $unameErr;?></span>
-						                <div class="invalid-feedback">Please enter a valid email.</div>
+						                <div id="serviceProviderInvalidUsername" class="invalid-feedback">Please enter a valid Username. Username can only be number and alphabets.</div>
+			            			</div>
+			            		</div>
+			            		<div class="col-md-6">
+			            			<div class="form-group">
+						                <label for=""><span class="compulsory-required">*</span>Password</label>
+						                <input id="serviceProviderPassword" type="password" name="" max="100" class="form-control" placeholder="Enter Password" required="">
+						                <div id="serviceProviderInvalidPassword" class="invalid-feedback">Please match the above mentioned criteria for Password.</div>
+			            			</div>
+			            		</div>
+			            		<div class="col-md-6">
+			            			<div class="form-group">
+						                <label for=""><span class="compulsory-required">*</span>Conform Password</label>
+						                <input id="serviceProviderConfPassword" type="password" name="" max="100" class="form-control" placeholder="Conform Password" required="">
+						                <div id="serviceProviderPasswordDidnot Matched" class="invalid-feedback">Both password did not matched.</div>
 			            			</div>
 			            		</div>
 			            		<div class="col-md-6">
 			            			<div class="form-group">
 						                <label for=""><span class="compulsory-required">*</span>Contact (primary)</label>
-						                <input type="text" name="con1" max="100" class="form-control" placeholder="lorem.ipsum@gmail.com" required="">
+						                <input id="serviceProviderContactPrimary" type="text" name="con1" max="100" class="form-control" placeholder="98XXXXXXXX" required="">
 										<span class="compulsory-required"><?php echo $conErr;?></span>
-						                <div class="invalid-feedback">Please enter a valid Contact no.</div>
+						                <div id="serviceProviderInvalidContactPrimary" class="invalid-feedback">Please enter a valid Contact no.</div>
 			            			</div>
 			            		</div>
 			            		<div class="col-md-6">
 			            			<div class="form-group">
 						                <label for="">Contact (secondary)</label>
-						                <input type="text" name="con2" max="100" class="form-control" placeholder="lorem.ipsum@gmail.com" required="">
-						                <div class="invalid-feedback">Please enter a valid contact no.</div>
+						                <input id="serviceProviderContactSecondary" type="text" name="con2" max="100" class="form-control" placeholder="98XXXXXXXX" required="">
+						                <div id="serviceProviderInvalidContactSecondary" class="invalid-feedback">Please enter a valid contact no.</div>
 			            			</div>
 			            		</div>
 			            		<div class="col-md-6">
 			            			<div class="form-group">
 						                <label for=""><span class="compulsory-required">*</span>Country (देश):</label>
-						                <input type="text" name="country" max="100" class="form-control" placeholder="lCountry Name" required="" value="Nepal">
+						                <input id="serviceProviderCountry" type="text" name="country" max="100" class="form-control" placeholder="Country Name" required="" value="Nepal">
 										<span class="compulsory-required"><?php echo $countryErr;?></span>
-						                <div class="invalid-feedback">Please enter a valid Contact no.</div>
+						                <div id="serviceProviderInvalidCountry" class="invalid-feedback">Please Select your Country.</div>
 			            			</div>
 			            		</div>
 			            		<div class="col-md-6">
 			            			<div class="form-group">
 						                <label for=""><span class="compulsory-required">*</span>State ( प्रदेश)</label>
-						                <input type="text" name="state" max="100" class="form-control" placeholder="lorem.ipsum@gmail.com" required="">
+						                <input id="serviceProviderState"  type="text" name="state" max="100" class="form-control" placeholder="Enter your state name" required="">
 										<span class="compulsory-required"><?php echo $stErr;?></span>
-						                <div class="invalid-feedback">Please enter a valid contact no.</div>
+						                <div id="serviceProviderInvalidState" class="invalid-feedback">Please select your state..</div>
 			            			</div>
 			            		</div>
 			            		<div class="col-md-6">
 			            			<div class="form-group">
 						                <label for=""><span class="compulsory-required">*</span>District (जिल्ला ):</label>
-						                <input type="text" name="district" max="100" class="form-control" placeholder="lCountry Name" required="" value="Nepal">
+						                <input id="serviceProviderDistrict" type="text" name="district" max="100" class="form-control" placeholder="Select District Name" required="" value="Nepal">
 										<span class="compulsory-required"><?php echo $distErr;?></span>
-						                <div class="invalid-feedback">Please enter a valid Contact no.</div>
+						                <div id="serviceProviderInvalidDistrict" class="invalid-feedback">Please select your District.</div>
 			            			</div>
 			            		</div>
 			            		<div class="col-md-6">
 			            			<div class="form-group">
 						                <label for=""><span class="compulsory-required">*</span>Municipility/Rural ( नगरपालिका /गाउँपालिका)</label>
-						                <input type="text" name="mun" max="100" class="form-control" placeholder="Municipility/Rural" required="">
+						                <input id="serviceProviderMunicipility" type="text" name="mun" max="100" class="form-control" placeholder="Municipility/Rural" required="">
 										<span class="compulsory-required"><?php echo $munErr;?></span>
-						                <div class="invalid-feedback">Please enter a valid contact no.</div>
+						                <div id="serviceProviderInvalidMunicipility" class="invalid-feedback">Please select your rural/municipility.</div>
 			            			</div>
 			            		</div>
 			            		<div class="col-md-6">
 			            			<div class="form-group">
 						                <label for=""><span class="compulsory-required">*</span>Service For ( सेवा प्रदान)</label><br><br>
-						                <select name="service" class="form-select" >
+						                <select id="serviceProviderService" name="service" class="form-select" >
 						                	<option value="" selected>Select Service</option>
 						                	<option value="hospital">Hospital</option>
 						                	<option value="ambulance">Ambuance</option>
@@ -146,32 +163,32 @@
 						                	<option value="other">Other</option>
 						                </select>
 										<span class="compulsory-required"><?php echo $serviceErr;?></span>
-						                <div class="invalid-feedback">Please select service you want to provide</div>
+						                <div id="serviceProviderInvalidService" class="invalid-feedback">Please select service you want to provide</div>
 			            			</div>
 			            		</div>
 			            		<div class="col-md-6">
 			            			<div class="form-group">
 						                <label for="">If other (यदि अन्य)</label>
-						                <textarea name="others" type="text" class="form-control" placeholder="If other Please Specify" rows="4"></textarea>
+						                <textarea id="serviceProviderIfOther" name="others" type="text" class="form-control" placeholder="If other Please Specify" rows="4"></textarea>
 										<span class="compulsory-required"><?php echo $otherErr;?></span>
-						                <div class="invalid-feedback">Please Specify service.</div>
+						                <div id="serviceProviderInvalidIfOther" class="invalid-feedback">Please Specify Other service you want to provide.</div>
 			            			</div>
 			            		</div>
 			            		<div class="col-12">
 								    <div class="form-check">
-								      <input
-								        class="form-check-input"type="checkbox" value="" id="invalidCheck"
+								      <input id="serviceProviderTerms" 
+								        class="form-check-input"type="checkbox" value=""
 								        required
 								      />
 								      <label class="form-check-label" for="invalidCheck">
 								        Agree to <a style="text-decoration: none;cursor: pointer;"  class="text-info" data-bs-toggle="modal" data-bs-target="#modalForTermsAndConditions">terms and conditions</a>
 								      </label>
-								      <div class="invalid-feedback">You must agree before submitting.</div>
+								      <div id="serviceProviderInvalidTerms" class="invalid-feedback">You must agree before submitting.</div>
 								    </div>
 								</div>
 			            		<div class="mb-3">
 			            			<div class="form-group">
-						                <button type="submit" class="btn btn-success">Register</button>
+						                <button id="serviceProviderRegister" type="button" class="btn btn-success">Register</button>
 			            			</div>
 			            		</div>
 			        		</form>
@@ -181,111 +198,125 @@
 		      			<!-- // For working Request------ -->
 			      	<div class="tab-pane fade" id="request" role="tabpanel" aria-labelledby="request-tab">
 			      		<div class="px-2 rounded">
-			      			<div align="center" class="alert alert-info pt-3">
-			      				<p>This is the request form to work as a team member for managing the website.</p>
+			      			<div id="requestResponseMessage" align="" class="alert alert-info pt-3">
+			      				<p>This is the request form to work as a team member for managing the website. <br>Password must be at least 8 characters and atmost 20 characters in length and must contain at least one number, one upper case letter, one lower case letter and one special character.</p>
 			      			</div>
-			        		<form method="post" class="row g-3 needs-validation" novalidate>   			
+			        		<form id="workRequestForm" method="post" class="row g-3 needs-validation" novalidate>   			
 			            		<div class="col-md-12">
 			            			<div class="form-group">
 						                <label for=""><span class="compulsory-required">*</span>Full Name (पुरा नाम)</label>
-						                <input type="text" name="" max="100" class="form-control" placeholder="lorem.ipsum@gmail.com" required="">
-						                <div class="invalid-feedback">Please enter a valid Name.</div>
+						                <input id="workRequestName" type="text" name="" max="100" class="form-control" placeholder="lorem ipsum" required="">
+						                <div id="workRequestInvalidName" class="invalid-feedback">Please enter a valid Name.</div>
 			            			</div>
 			            		</div><br>
 			            		<div class="col-md-6">
 			            			<div class="form-group">
 						                <label for=""><span class="compulsory-required">*</span>Email</label>
-						                <input type="text" name="" max="100" class="form-control" placeholder="lorem.ipsum@gmail.com" required="">
-						                <div class="invalid-feedback">Please enter a valid email.</div>
+						                <input id="workRequestEmail" type="text" name="" max="100" class="form-control" placeholder="lorem.ipsum@gmail.com" required="">
+						                <div id="workRequestInvalidEmail" class="invalid-feedback">Please enter a valid email.</div>
 			            			</div>
 			            		</div>
 			            		<div class="col-md-6">
 			            			<div class="form-group">
 						                <label for=""><span class="compulsory-required">*</span>Username</label>
-						                <input type="text" name="" max="100" class="form-control" placeholder="lorem.ipsum@gmail.com" required="">
-						                <div class="invalid-feedback">Please enter a valid Name.</div>
+						                <input id="workRequestUsername" type="text" name="" max="100" class="form-control" placeholder="ilorem12" required="">
+						                <div id="workRequestInvalidUsername" class="invalid-feedback">Please enter a valid Username. Username can only be number and alphabets.</div>
+			            			</div>
+			            		</div>
+			            		<div class="col-md-6">
+			            			<div class="form-group">
+						                <label for=""><span class="compulsory-required">*</span>Password</label>
+						                <input id="workRequestPassword" type="password" name="" max="100" class="form-control" placeholder="Enter password" required="">
+						                <div id="workRequestInvalidPassword" class="invalid-feedback">Please match the above mentioned criteria for Password.</div>
+			            			</div>
+			            		</div>
+			            		<div class="col-md-6">
+			            			<div class="form-group">
+						                <label for=""><span class="compulsory-required">*</span>Conform Password</label>
+						                <input id="workRequestConfPassword" type="password" name="" max="100" class="form-control" placeholder="Conform Password" required="">
+						                <div id="workRequestPasswordDidnotMatched" class="invalid-feedback">Both password did not matched.</div>
 			            			</div>
 			            		</div>
 			            		<div class="col-md-6">
 			            			<div class="form-group">
 						                <label for=""><span class="compulsory-required">*</span>Contact (primary)</label>
-						                <input type="text" name="" max="100" class="form-control" placeholder="lorem.ipsum@gmail.com" required="">
-						                <div class="invalid-feedback">Please enter a valid Contact no.</div>
+						                <input id="workRequestContactPrimary" type="tel" name="" max="100" class="form-control" placeholder="98XXXXXXXX" required="">
+						                <div id="workRequestInvalidContactPrimary" class="invalid-feedback">Please enter a valid Contact no.</div>
 			            			</div>
 			            		</div>
 			            		<div class="col-md-6">
 			            			<div class="form-group">
 						                <label for="">Contact (secondary)</label>
-						                <input type="text" name="" max="100" class="form-control" placeholder="lorem.ipsum@gmail.com" required="">
-						                <div class="invalid-feedback">Please enter a valid contact no.</div>
+						                <input id="workRequestContactSecondary" type="tel" name="" max="100" class="form-control" placeholder="98XXXXXXXX" required="">
+						                <div id="workRequestInvalidContactSecondary" class="invalid-feedback">Please enter a valid contact no.</div>
 			            			</div>
 			            		</div>
 			            		<div class="col-md-6">
 			            			<div class="form-group">
 						                <label for=""><span class="compulsory-required">*</span>Country (देश):</label>
-						                <input type="text" name="" max="100" class="form-control" placeholder="lCountry Name" required="" value="Nepal">
-						                <div class="invalid-feedback">Please enter a valid Contact no.</div>
+						                <input id="workRequestCountry" type="text" name="" max="100" class="form-control" placeholder="Country Name" required="" value="Nepal">
+						                <div id="workRequestInvalidCountry" class="invalid-feedback">Please Select your Country.</div>
 			            			</div>
 			            		</div>
 			            		<div class="col-md-6">
 			            			<div class="form-group">
 						                <label for=""><span class="compulsory-required">*</span>State ( प्रदेश)</label>
-						                <input type="text" name="" max="100" class="form-control" placeholder="lorem.ipsum@gmail.com" required="">
-						                <div class="invalid-feedback">Please enter a valid contact no.</div>
+						                <input id="workRequestState" type="text" name="" max="100" class="form-control" placeholder="Select your State" required="">
+						                <div id="workRequestInvalidState" class="invalid-feedback">Please select your state.</div>
 			            			</div>
 			            		</div>
 			            		<div class="col-md-6">
 			            			<div class="form-group">
 						                <label for=""><span class="compulsory-required">*</span>District (जिल्ला ):</label>
-						                <input type="text" name="" max="100" class="form-control" placeholder="lCountry Name" required="" value="Nepal">
-						                <div class="invalid-feedback">Please enter a valid Contact no.</div>
+						                <input id="workRequestDistrict" type="text" name="" max="100" class="form-control" placeholder="Select your District" required="">
+						                <div id="workRequestInvalidDistrict" class="invalid-feedback">Please select your district.</div>
 			            			</div>
 			            		</div>
 			            		<div class="col-md-6">
 			            			<div class="form-group">
 						                <label for=""><span class="compulsory-required">*</span>Municipility/Rural ( नगरपालिका /गाउँपालिका)</label>
-						                <input type="text" name="" max="100" class="form-control" placeholder="Municipility/Rural" required="">
-						                <div class="invalid-feedback">Please enter a valid contact no.</div>
+						                <input id="workRequestMunicipility" type="text" name="" max="100" class="form-control" placeholder="Municipility/Rural" required="">
+						                <div id="workRequestInvalidMunicipility" class="invalid-feedback">Please select your rural/municipility</div>
 			            			</div>
 			            		</div>
 			            		<div class="col-md-6">
 			            			<div class="form-group">
 						                <label for=""><span class="compulsory-required">*</span>Work as( सेवा प्रदान)</label><br><br>
-						                <select class="form-select">
-						                	<option selected>Select Service</option>
-						                	<option>Admin</option>
-						                	<option>Editor</option>
-						                	<option>Moderator</option>
-						                	<option>Advertiser</option>
-						                	<option>Analyst</option>
-						                	<option>Other</option>
+						                <select id="workRequestService" class="form-select">
+						                	<option value="notSelected">Select Service</option>
+						                	<option value="admin">Admin</option>
+						                	<option value="editor">Editor</option>
+						                	<option value="moderator">Moderator</option>
+						                	<option value="advertiser">Advertiser</option>
+						                	<option value="analyst">Analyst</option>
+						                	<option value="other">Other</option>
 						                </select>
-						                <div class="invalid-feedback">Please select work you want to perform as.</div>
+						                <div id="workRequestInvalidService" class="invalid-feedback">Please select the service you want to provide.</div>
 			            			</div>
 			            		</div>
 			            		<div class="col-md-6">
 			            			<div class="form-group">
 						                <label for="">If other (यदि अन्य)</label>
-						                <textarea type="text" class="form-control" placeholder="If other Please Specify" rows="4"></textarea>
-						                <div class="invalid-feedback">Please Specify Other work you want to provide.</div>
+						                <textarea id="workRequestIfOther" type="text" class="form-control" placeholder="If other Please Specify" rows="4"></textarea>
+						                <div id="workRequestInvalidOtherService" class="invalid-feedback">Please Specify Other work you want to provide.</div>
 			            			</div>
 			            		</div>
 			            		<div class="col-12">
 								    <div class="form-check">
-								      <input
-								        class="form-check-input"type="checkbox" value="" id="invalidCheck"
+								      <input id="workRequestAgreeToTerms" 
+								        class="form-check-input" type="checkbox"
 								        required
 								      />
 								      <label class="form-check-label" for="invalidCheck">
 								        Agree to <a style="text-decoration: none;cursor: pointer;"  class="text-info" data-bs-toggle="modal" data-bs-target="#modalForTermsAndConditions">terms and conditions</a>
 								      </label>
-								      <div class="invalid-feedback">You must agree before submitting.</div>
+								      <div id="workRequestInvalidAgreeToTerms" class="invalid-feedback">You must agree before submitting.</div>
 								    </div>
 								</div>
 
 			            		<div class="mb-3">
 			            			<div class="form-group">
-						                <button class="btn btn-success" type="submit">Register</button>
+						                <button id="workRequestRegister" class="btn btn-success" type="button">Register</button>
 			            			</div>
 			            		</div>
 			            	</form>
@@ -299,13 +330,13 @@
 		          			<div class="mb-3">
 		            			<div class="form-group">
 		                			<label for="">Email</label>
-	                				<input type="email" name="" max="255" class="form-control" placeholder="Enter Your email" required="">
-	                				<div class="invalid-feedback">Please Enter Valid Email</div>
+	                				<input type="email" name="" id="enteredResetEmail" class="form-control" placeholder="Enter Your email" required="" >
+	                				<div id="invalidResetEmail" class="invalid-feedback">Please Enter Valid Email</div>
 		            			</div>
 		            		</div>
 		            		<div class="mb-3">
 		            			<div class="form-group">
-	                				<button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#modalForPasswordReset">Reset</button>
+	                				<button id="submitResetEmail" class="btn btn-success" type="button">Reset</button>
 		            			</div>
 		            		</div>
 		            	</form>
@@ -324,64 +355,118 @@
 
 
 <!-- ------------Different Modals---------- -->
+<!-- // Login Otp Verification -->
+<div class="modal fade" id="modalForAccountOtpVerification" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Verify your Account.</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      	<div id="accountVerificationResponse" class="hideContent alert ">
+      		<p></p>
+      	</div>
+        <div id="accountVerificationOtpbox">
+    		<form method="post" class="row g-3 needs-validation" novalidate>
+    			<div align="center" class="alert alert-info pt-3">
+    				<p>An email has sent you with an OTP code check it out.</p>
+    			</div>
+      			<div class="col-md-6">
+        			<div class="form-group">
+            			<label for="">OTP (six-digit)</label>
+        				<input id="accountVerificationEnteredOtp" type="tel" name="" maxlength="6" minlength="6" class="form-control" placeholder="One Time Password" required="/">
+        				<div id="accountVerificationInvalidOtp" class="invalid-feedback">Otp must be of 6-digit code. Check your spam folder too.</div>
+        			</div>
+        		</div>
+        		<div class="col-md-6">
+        			<div class="form-group">
+        				<label></label><br>
+        				<button class="btn btn-success" type="button" id="submitAccountVerificationOtp">Submit</button>
+        			</div>
+        		</div>
+        		<div class="col-md-6">
+        			<div class="form-group">
+        				<a type="button" class="text-info noTextDecoration" id="resendOtpCode">Didn't get?</a>
+        			</div>
+        		</div>
+        	</form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Modal for tking otp to reset password -->
 <div class="modal fade" id="modalForPasswordReset" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <p class="modal-title" id="staticBackdropLabel">An email has sent you with an OTP code check it out.</p>
+        <p class="modal-title" id="staticBackdropLabel">Password reset</p>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="px-2 rounded">
-        	<div>
+        	<div id="inputOtpbox">
 	    		<form method="post" class="row g-3 needs-validation" novalidate>
+	    			<div align="center" class="alert alert-info pt-3">
+	    				<p>An email has sent you with an OTP code check it out.</p>
+	    			</div>
 	      			<div class="col-md-6">
 	        			<div class="form-group">
 	            			<label for="">OTP (six-digit)</label>
-	        				<input type="tel" name="" max="6" minlength="6" class="form-control" placeholder="One TIme Password" required="">
-	        				<div class="invalid-feedback">Check your spa folder too</div>
+	        				<input id="enteredOtp" type="tel" name="" maxlength="6" minlength="6" class="form-control" placeholder="One Time Password" required="/">
+	        				<div id="wrongOtp" class="invalid-feedback">Otp must be of 6-digit code. Check your spam folder too.</div>
 	        			</div>
 	        		</div>
 	        		<div class="col-md-6">
 	        			<div class="form-group">
 	        				<label></label><br>
-	        				<button class="btn btn-success" type="button">Submit</button>
+	        				<button class="btn btn-success" type="button" id="submitOtp">Submit</button>
 	        			</div>
 	        		</div>
 	        		<div class="col-md-6">
 	        			<div class="form-group">
-	        				<a href="">Didn't get?</a>
+	        				<a type="button" class="text-info noTextDecoration" id="resendOtpCode">Didn't get?</a>
 	        			</div>
 	        		</div>
 	        	</form>
 	        </div>
 	        <!-- // IF Input OTP is correct -->
-	        <div>
+	        <div id="inputNewPassword" class="hideContent">
 	        	<form method="post" class="row g-3 needs-validation" novalidate>
 	        		<div align="center" class="alert alert-info pt-3">
-	      				<p>Password Must be of 8 characters</p>
+	      				<p>Password must be at least 8 characters and atmost 20 characters in length and must contain at least one number, one upper case letter, one lower case letter and one special character.</p>
 	      			</div>
 	      			<div class="mb-3">
 	        			<div class="form-group">
 	            			<label for="">New Password</label>
-	        				<input type="password" name="" max="20" minlength="8" class="form-control" placeholder="Enter New Password" required="">
-	        				<div class="invalid-feedback">Password Must be</div>
+	        				<input id="enteredNewPassword" type="password" name="" max="20" minlength="8" class="form-control" placeholder="Enter New Password" required="">
+	        				<div id="invalidPassword" class="invalid-feedback">Invalid Password. Please match above criteria</div>
 	        			</div>
 	        		</div>
 	        		<div class="mb-3">
 	        			<div class="form-group">
 	            			<label for="">Conform Password</label>
-	        				<input type="password" name="" max="20" minlength="8" class="form-control" placeholder="Conform New Password" required="">
-	        				<div class="invalid-feedback">Password Must be</div>
+	        				<input id="enteredConformPassword" type="password" name="" max="20" minlength="8" class="form-control" placeholder="Conform New Password" required="">
+	        				<div id="bothPasswordNotMatched" class="invalid-feedback">Both Password did not matched</div>
 	        			</div>
 	        		</div>
 	        		<div class="mb-3">
 	        			<div class="form-group">
-	        				<button class="btn btn-success" type="button">Submit</button>
+	        				<button class="btn btn-success" type="button" id="submitNewPassword">Submit</button>
 	        			</div>
 	        		</div>
 	        	</form>
+	        </div>
+	        <!-- // Password changed sucessfully -->
+	        <div id="passwordResetSucess" class="hideContent">
+	        	<div id="messageClass" class="alert alert-success">
+	        		<p><i class="fa fa-tick">&nbsp;</i> Your Password has been reset sucessfully. Try login.</p>
+	        	</div>
 	        </div>
         </div>
       </div>
@@ -411,5 +496,6 @@
     </div>
   </div>
 </div>
+
 
 <?php require 'footer.html'; ?>
